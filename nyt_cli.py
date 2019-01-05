@@ -16,7 +16,9 @@ def top_story(section, api_key):
     }
 
     response = requests.get(url, params=query_params)
-    return response.json()['results'][0]['title']
+    return (response.json()['results'][0]['title'],
+            response.json()['results'][0]['byline'],
+            response.json()['results'][0]['url'])
 
 
 @click.command()
@@ -36,8 +38,9 @@ def main(section, api_key):
     You need a valid API key from the New York Times for the tool to work.
     You can sign up for a free account at https://developer.nytimes.com/signup.
     """
-    story = top_story(section, api_key)
-    print(f"The top story in {section} right now: {story}.")
+    story, byline, url = top_story(section, api_key)
+    print(f"The top story in {section} right now: \n{story} {byline.title()}.")
+    print(f"Read more at {url}")
 
 
 if __name__ == "__main__":
