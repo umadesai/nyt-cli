@@ -1,12 +1,6 @@
-import unittest
+def func(x):
+    return x + 1
 
 
-class BasicTestSuite(unittest.TestCase):
-    """Fill in test cases."""
-
-    def test_absolute_truth_and_meaning(self):
-        assert True
-
-
-if __name__ == '__main__':
-    unittest.main()
+def test_answer():
+    assert func(3) == 4
